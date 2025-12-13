@@ -1,4 +1,4 @@
-# README – Task Division Website E-Commerce
+# Task Division Website E-Commerce
 
 Dokumen ini berisi pembagian tugas (task division) dalam pengembangan **Website E-Commerce**. README ini digunakan sebagai panduan kerja tim agar setiap peran memiliki tanggung jawab yang jelas dan terstruktur.
 
@@ -14,6 +14,22 @@ Website e-commerce yang dikembangkan memiliki fitur utama:
 * Keranjang belanja
 * Checkout & transaksi
 * Manajemen pesanan
+
+---
+
+## Tim Proyek
+
+**Project Manager (PM):** Tika Isnaeni, Khilmy Firdaus
+
+**Frontend Developer:** (Nama belum ditentukan)
+
+**Backend Developer:** (Nama belum ditentukan)
+
+**UI Designer:** (Nama belum ditentukan)
+
+**Database Engineer:** (Nama belum ditentukan)
+
+**UX + QA:** (Nama belum ditentukan)
 
 ---
 
@@ -168,4 +184,3 @@ Website e-commerce yang dikembangkan memiliki fitur utama:
 * Tugas kuliah
 * Proyek kelompok
 * Portofolio pengembangan website e-commerce
-
