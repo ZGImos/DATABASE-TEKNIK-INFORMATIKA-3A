@@ -179,7 +179,7 @@ Website e-commerce yang dikembangkan memiliki fitur utama:
 
 ---
 
-📄 Dokumen README ini dapat digunakan untuk:
+Proyek ini dapat digunakan untuk:
 
 * Tugas kuliah
 * Proyek kelompok
