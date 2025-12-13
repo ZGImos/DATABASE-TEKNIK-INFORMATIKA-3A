@@ -201,7 +201,7 @@ git config --global user.email "email@kampus.ac.id"
 #### HTTPS
 
 ```bash
-git clone https://github.com/username/repo.git
+git clone https://github.com/TkisnaeniLly/DATABASE-TEKNIK-INFORMATIKA-3A.git
 ```
 
 #### SSH (Direkomendasikan)
