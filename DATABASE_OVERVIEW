@@ -19,7 +19,7 @@ Dokumen ini menjelaskan **gambaran umum database** pada website e-commerce fashi
 * Relasi antar tabel menggunakan foreign key
 * Struktur database mendukung skalabilitas sistem
   
-## Entitas Utama dan Fungsinya
+## Tabel, Entitas Utama, Relasi dan Fungsinya
 
 1. Tabel User
 2.
