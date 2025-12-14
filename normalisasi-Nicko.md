@@ -17,7 +17,6 @@
 | `item_keranjang_id` | Primary Key Tabel Item Keranjang |
 | `keranjang_id`      | Foreign Key ke tabel Keranjang   |
 | `variant_id`        | Foreign Key ke tabel variant     |
-| `payment_status`    | Status pembayaran                |
 | `quantity`          | jumlah item keranjang            |
 | `subtotal`          | Total harga dari item            |
 
