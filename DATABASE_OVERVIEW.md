@@ -196,17 +196,52 @@ Digunakan untuk menyimpan daftar produk yang dipilih oleh user sebelum dilakukan
 
 ---
 
-## 15.
+### 15. Tabel Wishlist/Favorite
+*(Ditambahkan oleh Elitsa Effie)*
+
+### Deskripsi
+Tabel "wishlist' digunakan untuk menyimpan data produk yang ditandai sebagai favorit oleh pengguna dalam sistem e-commerce. Tabel ini berperan sebagai penghubung antara tabel users dan product, serta dipisahkan dari tabel keranjang karena memiliki fungsi penyimpanan minat pengguna, bukan persiapan transaksi pembelian.
 
 ---
+
+### Atribut
+Tabel wishlist memiliki atribut sebagai berikut:
+- 'wishlist_id' : Primary key yang mengidentifikasi setiap data wishlist secara unik
+-	'user_id' : Foreign key yang mereferensikan pengguna yang menambahkan produk ke dalam wishlist
+-	'product_id' : Foreign key yang mereferensikan produk yang ditandai sebagai favorit
+-	'status' : Menunjukkan status wishlist (aktif atau dihapus) untuk mendukung soft delete
+-	'created_at' : Mencatat waktu saat produk ditambahkan ke dalam wishlist
+-	'updated_at' : Mencatat waktu terakhir data wishlist diperbarui
+
+---
+
+### Relasi
+Tabel wishlist memiliki relasi dengan beberapa tabel lain, yaitu:
+-	**Wishlist – Users** (N : 1)
+Banyak item wishlist dimiliki oleh satu pengguna
+-	**Wishlist – Product** (N : 1)
+Banyak item wishlist mengacu pada satu produk
+-	**Wishlist – Review** (tidak langsung)
+Produk dalam wishlist dapat menjadi referensi sebelum pengguna memberikan ulasan
+-	**Wishlist – Log Aktivitas** (1 : N)
+Aktivitas penambahan atau penghapusan wishlist dapat dicatat sebagai log aktivitas pengguna
+
+---
+
+### Fungsi
+**Tabel wishlist** berfungsi untuk menyimpan data produk yang diminati oleh pengguna serta memudahkan pengelolaan daftar produk favorit. Keberadaan tabel ini mendukung fitur lanjutan seperti rekomendasi produk dan notifikasi promo, serta membantu meningkatkan interaksi pengguna dan potensi transaksi pembelian di masa mendatang.
+
+---
+
+### Catatan Normalisasi
+'Tabel wishlist' menggunakan primary key tunggal dan foreign key ke tabel 'users' dan 'product' sehingga telah memenuhi normalisasi hingga Third Normal Form (3NF). Seluruh atribut bergantung langsung pada primary key tanpa redundansi data, serta menjaga integritas data dan mendukung pengembangan fitur lanjutan.
+
 
 ## 16. Tabel Metode Pembayaran  
 *(Ditambahkan oleh Panji Pramudia)*
 
 ### Deskripsi  
 Tabel `payment_methods` merupakan hasil normalisasi untuk memisahkan konfigurasi teknis pembayaran dari data penyedia layanan (Partners). Dalam sistem e-commerce, satu penyedia layanan (seperti Bank) dapat memiliki berbagai jenis produk pembayaran (Virtual Account, Kartu Kredit), sehingga pemisahan tabel ini dilakukan untuk menghindari redundansi data penyedia serta memudahkan pengaturan biaya layanan yang berbeda-beda.
-
----
 
 ### Atribut  
 Tabel `payment_methods` memiliki atribut sebagai berikut:
