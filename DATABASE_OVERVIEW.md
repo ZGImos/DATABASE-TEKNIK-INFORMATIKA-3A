@@ -200,7 +200,7 @@ Digunakan untuk menyimpan daftar produk yang dipilih oleh user sebelum dilakukan
 *(Ditambahkan oleh Elitsa Effie)*
 
 ### Deskripsi
-Tabel "wishlist' digunakan untuk menyimpan data produk yang ditandai sebagai favorit oleh pengguna dalam sistem e-commerce. Tabel ini berperan sebagai penghubung antara tabel users dan product, serta dipisahkan dari tabel keranjang karena memiliki fungsi penyimpanan minat pengguna, bukan persiapan transaksi pembelian.
+**Tabel wishlist** digunakan untuk menyimpan data produk yang ditandai sebagai favorit oleh pengguna dalam sistem e-commerce. Tabel ini berperan sebagai penghubung antara tabel users dan product, serta dipisahkan dari tabel keranjang karena memiliki fungsi penyimpanan minat pengguna, bukan persiapan transaksi pembelian.
 
 ---
 
@@ -234,7 +234,7 @@ Aktivitas penambahan atau penghapusan wishlist dapat dicatat sebagai log aktivit
 ---
 
 ### Catatan Normalisasi
-'Tabel wishlist' menggunakan primary key tunggal dan foreign key ke tabel 'users' dan 'product' sehingga telah memenuhi normalisasi hingga Third Normal Form (3NF). Seluruh atribut bergantung langsung pada primary key tanpa redundansi data, serta menjaga integritas data dan mendukung pengembangan fitur lanjutan.
+**Tabel wishlist** menggunakan primary key tunggal dan foreign key ke **tabel 'users' dan 'product'** sehingga telah memenuhi normalisasi hingga **Third Normal Form (3NF)**. Seluruh atribut bergantung langsung pada primary key tanpa redundansi data, serta menjaga integritas data dan mendukung pengembangan fitur lanjutan.
 
 
 ## 16. Tabel Metode Pembayaran  
