@@ -76,7 +76,17 @@ Penggabungan tabel User dan Customer dilakukan untuk menjaga normalisasi data hi
    Relasi : Lokasi Operasional <> Inventory (1 : N) → Satu lokasi operasional dapat menyimpan banyak data stok produk.
             Lokasi Operasional <> Unit Operasional (1 : N) → Satu lokasi operasional dapat digunakan oleh banyak unit atau aktivitas kerja.
    Fungsi : Menyimpan dan mengelola data lokasi operasional sebagai referensi utama dalam sistem, memastikan konsistensi penggunaan lokasi pada berbagai modul, serta mendukung pengelolaan aktivitas operasional dan penyimpanan barang.
-
+27.
+28. Tabel Patner Company
+    Entitas Utama: Patner Company (Perusahaan Mitra)
+    Atribut Utama: Partner_Id (PK), Name, Logo_Url, Type (Logistics, Payment, Brand, Marketing)
+    Relasi: Patner Company <> Produk (1 : N) → Satu Partner (sebagai Brand) dapat menyediakan banyak Produk.
+            Patner Company <> Metode Pembayaran (1 : N) → Satu Partner (sebagai Payment Provider) dapat menyediakan satu atau lebih Metode Pembayaran.
+            Patner Company <> Jasa Pengiriman (1 : N) → Satu Partner (sebagai Perusahaan Logistik) dapat menyediakan berbagai Service Jasa Pengiriman.
+            Patner Company <> Promo (N : N) → Promo dapat bersifat eksklusif untuk Partner tertentu (misalnya, promo Bank X).
+    Fungsi: Berfungsi sebagai tabel master untuk menyimpan dan mengelola data perusahaan eksternal yang bekerja sama dengan e-commerce, termasuk Brand yang dijual (misalnya Nike, H&M), Penyedia Pembayaran (Bank, E-Wallet), dan Perusahaan Logistik (Jasa Pengiriman).
+            Memastikan data mitra terpusat dan konsisten di seluruh modul, seperti menampilkan logo brand di halaman produk atau logo bank di halaman checkout.
+   
 Kalau mau, kirim:
 
 ---
