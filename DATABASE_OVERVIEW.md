@@ -1,6 +1,6 @@
 # Analisis Tugas Basis Data: Tabel Produk (Faiq Akhmad)
 
-## 📝 Soal No. 1: Analisis Atribut pada Tabel Produk
+## No. 1: Analisis Atribut pada Tabel Produk
 
 Tabel Produk adalah entitas inti dalam sistem e-commerce. Atribut-atributnya dirancang untuk mendefinisikan dan mengidentifikasi setiap barang yang dijual.
 
@@ -17,7 +17,7 @@ Tabel Produk adalah entitas inti dalam sistem e-commerce. Atribut-atributnya dir
 
 ---
 
-## 🔗 Soal No. 2: Relasi Tabel Produk dengan Tabel Teman Lain
+##  No. 2: Relasi Tabel Produk dengan Tabel Teman Lain
 
 Tabel Produk (`Product_Id`) merupakan pusat dari banyak relasi, menghubungkan data dasar (Brand, Category) dengan data transaksional (Keranjang, Pesanan) dan data pengguna (Review, Wishlist).
 
@@ -50,4 +50,5 @@ Produk memiliki relasi N:M dengan entitas lain (seperti Keranjang atau Pesanan) 
 
 * **Produk** ↔ **Pesanan**
     * **Jalur:** `Produk` (1:N) $\rightarrow$ `Varian` (1:N) $\rightarrow$ `Item Pesanan` (N:1) $\rightarrow$ `Pesanan`
+
     * **Tabel Terlibat:** **Tabel Item Pesanan** (Riyan Zacki Saputra) menggunakan `Variant_Id` sebagai Foreign Key.
