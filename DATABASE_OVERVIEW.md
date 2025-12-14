@@ -156,7 +156,31 @@ Tabel `inventory` berfungsi untuk mengelola ketersediaan stok setiap varian prod
 
 ---
 
-## 11.
+## 11. Tabel Keranjang Sementara
+*(Ditambahkan oleh Moh Ilham Dwinanto)*
+
+### Deskripsi
+Keranjang Sementara pada sistem e-commerce digunakan untuk menyimpan daftar produk yang dipilih oleh user sebelum dilakukan proses checkout dan pembuatan pesanan (Order). Keranjang bersifat sementara dan dapat berubah sewaktu-waktu selama user belum menyelesaikan transaksi.
+
+---
+
+### Atribut
+`keranjang_id`   : sebagai Primary Key keranjang
+`user_id`        : sebagai Foreign Key ke tabel user
+`total_qty`      : total jumlah item dalam keranjang
+`total_price`    : total harga seluruh item
+`last_update`    : waktu terakhir keranjang diperbarui
+
+---
+
+### Relasi
+- user -> keranjang (1:1) : satu user hanya memiliki satu keranjang aktif
+- keranjang -> item_keranjang (1:N) : satu keranjang dapat berisi banyak item
+
+---
+
+### Fungsi
+Digunakan untuk menyimpan daftar produk yang dipilih oleh user sebelum dilakukan proses checkout dan pembuatan pesanan (Order).
 
 ---
 
