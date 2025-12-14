@@ -77,7 +77,7 @@ Alasan:
 | password       |        | total_price      |        | quantity              |
 | no_hp          |        | last_update      |        | subtotal              |
 | status         |        +------------------+        +-----------------------+  
-| login terakhir |
+| login_terakhir |
 +----------------+ 
 ```
 
