@@ -33,8 +33,6 @@ Dokumen ini menjelaskan beberapa tabel utama dalam perancangan basis data sistem
 ### Deskripsi  
 Tabel `users` merupakan hasil penggabungan antara tabel **User** dan **Customer**. Penggabungan ini dilakukan untuk meningkatkan efisiensi penyimpanan data serta menghindari redundansi. Dalam sistem e-commerce (Zalora-like), customer pada dasarnya adalah user yang telah melakukan autentikasi dan melakukan aktivitas transaksi, sehingga pemisahan tabel dianggap tidak diperlukan.
 
----
-
 ### Atribut  
 Tabel `users` memiliki atribut sebagai berikut:
 
@@ -49,8 +47,6 @@ Tabel `users` memiliki atribut sebagai berikut:
 - `gender` : Menyimpan jenis kelamin pengguna  
 - `birth_date` : Menyimpan tanggal lahir pengguna  
 - `registered_at` : Mencatat waktu pendaftaran akun  
-
----
 
 ### Relasi  
 Tabel `users` memiliki relasi dengan beberapa tabel lain, yaitu:
@@ -82,12 +78,8 @@ Tabel `users` memiliki relasi dengan beberapa tabel lain, yaitu:
 - **users – riwayat_pencarian** (1 : N)  
   Satu pengguna memiliki banyak riwayat pencarian produk  
 
----
-
 ### Fungsi  
 Tabel `users` berfungsi sebagai pusat data pengguna dalam sistem e-commerce. Tabel ini digunakan untuk mengelola autentikasi dan otorisasi pengguna, menyimpan data profil customer, serta menjadi referensi utama bagi seluruh aktivitas pengguna seperti transaksi, subscription, pengajuan return, dan penggunaan promo. Dengan adanya tabel ini, sistem dapat mengelola data pengguna secara terintegrasi dan konsisten.
-
----
 
 ### Catatan Normalisasi  
 Penggabungan tabel **User** dan **Customer** dilakukan untuk menjaga normalisasi data hingga **Third Normal Form (3NF)**, mengurangi duplikasi data, serta meningkatkan performa query dalam sistem e-commerce.
@@ -115,8 +107,6 @@ Tabel Produk adalah entitas inti dalam sistem e-commerce. Atribut-atributnya dir
 | **`Created`** | Tanggal dan waktu produk pertama kali dicatat dalam sistem. | Datetime/Timestamp | Non-Key |
 | **`Updated`** | Tanggal dan waktu terakhir informasi produk diperbarui. | Datetime/Timestamp | Non-Key |
 | **`Status`** | Indikator ketersediaan (Aktif/Nonaktif/Draft). | Boolean / Varchar | Non-Key |
-
----
 
 ##  No. 2: Relasi Tabel Produk dengan Tabel Teman Lain
 
@@ -217,8 +207,6 @@ Tabel `inventory` berfungsi untuk mengelola ketersediaan stok setiap varian prod
 ### Deskripsi
 Keranjang Sementara pada sistem e-commerce digunakan untuk menyimpan daftar produk yang dipilih oleh user sebelum dilakukan proses checkout dan pembuatan pesanan (Order). Keranjang bersifat sementara dan dapat berubah sewaktu-waktu selama user belum menyelesaikan transaksi.
 
----
-
 ### Atribut
 - `keranjang_id`   : sebagai Primary Key keranjang
 - `user_id`        : sebagai Foreign Key ke tabel user
@@ -226,13 +214,9 @@ Keranjang Sementara pada sistem e-commerce digunakan untuk menyimpan daftar prod
 - `total_price`    : total harga seluruh item
 - `last_update`    : waktu terakhir keranjang diperbarui
 
----
-
 ### Relasi
 - user -> keranjang (1:1) : satu user hanya memiliki satu keranjang aktif
 - keranjang -> item_keranjang (1:N) : satu keranjang dapat berisi banyak item
-
----
 
 ### Fungsi
 Digunakan untuk menyimpan daftar produk yang dipilih oleh user sebelum dilakukan proses checkout dan pembuatan pesanan (Order).
@@ -257,8 +241,6 @@ Digunakan untuk menyimpan daftar produk yang dipilih oleh user sebelum dilakukan
 ### Deskripsi
 **Tabel wishlist** digunakan untuk menyimpan data produk yang ditandai sebagai favorit oleh pengguna dalam sistem e-commerce. Tabel ini berperan sebagai penghubung antara tabel users dan product, serta dipisahkan dari tabel keranjang karena memiliki fungsi penyimpanan minat pengguna, bukan persiapan transaksi pembelian.
 
----
-
 ### Atribut
 Tabel wishlist memiliki atribut sebagai berikut:
 - 'wishlist_id' : Primary key yang mengidentifikasi setiap data wishlist secara unik
@@ -267,8 +249,6 @@ Tabel wishlist memiliki atribut sebagai berikut:
 -	'status' : Menunjukkan status wishlist (aktif atau dihapus) untuk mendukung soft delete
 -	'created_at' : Mencatat waktu saat produk ditambahkan ke dalam wishlist
 -	'updated_at' : Mencatat waktu terakhir data wishlist diperbarui
-
----
 
 ### Relasi
 Tabel wishlist memiliki relasi dengan beberapa tabel lain, yaitu:
@@ -280,8 +260,6 @@ Banyak item wishlist mengacu pada satu produk
 Produk dalam wishlist dapat menjadi referensi sebelum pengguna memberikan ulasan
 -	**Wishlist – Log Aktivitas** (1 : N)
 Aktivitas penambahan atau penghapusan wishlist dapat dicatat sebagai log aktivitas pengguna
-
----
 
 ### Fungsi
 **Tabel wishlist** berfungsi untuk menyimpan data produk yang diminati oleh pengguna serta memudahkan pengelolaan daftar produk favorit. Keberadaan tabel ini mendukung fitur lanjutan seperti rekomendasi produk dan notifikasi promo, serta membantu meningkatkan interaksi pengguna dan potensi transaksi pembelian di masa mendatang.
@@ -300,7 +278,6 @@ Tabel `payment_methods` merupakan hasil normalisasi untuk memisahkan konfigurasi
 
 ### Atribut  
 Tabel `payment_methods` memiliki atribut sebagai berikut:
-
 - `method_id` : Primary key yang mengidentifikasi setiap metode pembayaran secara unik  
 - `partner_id` : Foreign key yang menghubungkan metode ini dengan data penyedia layanan (partners)  
 - `category_id` : Foreign key yang mengelompokkan metode ke dalam jenis tertentu (seperti E-Wallet atau Transfer Bank)  
@@ -310,8 +287,6 @@ Tabel `payment_methods` memiliki atribut sebagai berikut:
 - `admin_fee_percent` : Menyimpan biaya admin dalam bentuk persentase  
 - `min_amount` : Membatasi jumlah minimal transaksi yang diperbolehkan  
 - `is_active` : Menunjukkan status ketersediaan metode pembayaran (aktif / nonaktif)  
-
----
 
 ### Relasi  
 Tabel `payment_methods` memiliki relasi dengan beberapa tabel lain, yaitu:
@@ -325,12 +300,8 @@ Tabel `payment_methods` memiliki relasi dengan beberapa tabel lain, yaitu:
 - **payment_methods – payments** (1 : N)  
   Satu metode pembayaran dapat digunakan dalam banyak riwayat transaksi yang dilakukan user  
 
----
-
 ### Fungsi  
 Tabel `payment_methods` berfungsi sebagai pusat konfigurasi opsi pembayaran dalam sistem e-commerce. Tabel ini digunakan untuk menampilkan pilihan bayar yang tersedia di halaman *checkout*, menjadi acuan perhitungan total biaya admin secara otomatis, serta menjadi referensi validasi bagi tabel transaksi (payments). Dengan adanya tabel ini, sistem dapat mengelola penambahan atau penonaktifan metode bayar secara dinamis tanpa mengganggu integritas data.
-
----
 
 ### Catatan Normalisasi  
 Pemisahan tabel **Partners** dan **Payment Methods** dilakukan untuk menjaga normalisasi data hingga **Third Normal Form (3NF)**, mencegah duplikasi data penyedia layanan, serta mendukung skalabilitas jika terjadi penambahan produk pembayaran baru di masa depan.
@@ -440,9 +411,6 @@ Tabel riwayat_pencarian telah dinormalisasi hingga Third Normal Form (3NF). Selu
 ### Fungsi  
 Tabel `lokasi_operasional` berfungsi untuk menyimpan dan mengelola data lokasi operasional sebagai referensi utama dalam sistem, memastikan konsistensi penggunaan lokasi pada berbagai modul, serta mendukung pengelolaan aktivitas operasional dan penyimpanan barang.
 
----
-
-
 ## Catatan
 
 - Detail SQL dan implementasi teknis disesuaikan oleh Database Engineer (Satu Kelas)
@@ -457,59 +425,7 @@ Tabel `lokasi_operasional` berfungsi untuk menyimpan dan mengelola data lokasi o
 ## 28.
 
 ---
-# Analisis Tugas Basis Data: Tabel Produk (Faiq Akhmad)
 
-## 📝 Soal No. 1: Analisis Atribut pada Tabel Produk
-
-Tabel Produk adalah entitas inti dalam sistem e-commerce. Atribut-atributnya dirancang untuk mendefinisikan dan mengidentifikasi setiap barang yang dijual.
-
-| Atribut | Peran (Keterangan) | Tipe Data yang Mungkin | Kunci |
-| :--- | :--- | :--- | :--- |
-| **`Product_Id`** | Pengenal unik untuk setiap produk. | Integer / Varchar | **Primary Key (PK)** |
-| **`Brand_Id`** | Mengidentifikasi merek produk. | Integer / Varchar | **Foreign Key (FK)** ke Tabel Brand |
-| **`Category_Id`** | Mengidentifikasi kategori produk (misalnya, Elektronik, Pakaian). | Integer / Varchar | **Foreign Key (FK)** ke Tabel Kategori |
-| **`Nama Produk`** | Nama lengkap produk yang dijual. | Varchar (50-255) | Non-Key |
-| **`Deskripsi`** | Detail atau penjelasan panjang mengenai fitur dan spesifikasi produk. | Text | Non-Key |
-| **`Created`** | Tanggal dan waktu produk pertama kali dicatat dalam sistem. | Datetime/Timestamp | Non-Key |
-| **`Updated`** | Tanggal dan waktu terakhir informasi produk diperbarui. | Datetime/Timestamp | Non-Key |
-| **`Status`** | Indikator ketersediaan (Aktif/Nonaktif/Draft). | Boolean / Varchar | Non-Key |
-
----
-
-## 🔗 Soal No. 2: Relasi Tabel Produk dengan Tabel Teman Lain
-
-Tabel Produk (`Product_Id`) merupakan pusat dari banyak relasi, menghubungkan data dasar (Brand, Category) dengan data transaksional (Keranjang, Pesanan) dan data pengguna (Review, Wishlist).
-
-### 1. Relasi One-to-Many (1:N)
-
-#### A. Produk Merujuk ke Data Dasar (Produk menggunakan FK)
-
-| Tabel Teman | Kunci Penghubung | Jenis Relasi | Keterangan |
-| :--- | :--- | :--- | :--- |
-| **Tabel Brand** (Juniar Viki) | **`Brand_Id`** (FK di Produk) | 1 Brand memiliki N Produk | Tabel Produk mengambil `Brand_Id` sebagai Kunci Tamu. |
-| **Tabel Kategori** (Naufal Fawwaz Ardiansyah) | **`Category_Id`** (FK di Produk) | 1 Kategori memiliki N Produk | Tabel Produk mengambil `Category_Id` sebagai Kunci Tamu. |
-
-#### B. Data Transaksional & User Merujuk ke Produk (Tabel Teman menggunakan FK)
-
-| Tabel Teman | Kunci Penghubung | Jenis Relasi | Keterangan |
-| :--- | :--- | :--- | :--- |
-| **Tabel Varian** (Moh. Arman Maulana) | **`Product_Id`** (FK di Varian) | 1 Produk memiliki N Varian | Produk dapat memiliki berbagai variasi (ukuran, warna, dsb.). |
-| **Tabel Media** (Wylson Marcho Adelwin) | **`Product_Id`** (FK di Media) | 1 Produk memiliki N Media | Menyimpan banyak gambar atau video untuk satu produk. |
-| **Tabel Review/Rating** (Haidar M. Fadhil) | **`Product_Id`** (FK di Review) | 1 Produk memiliki N Review | Setiap produk dapat diulas oleh banyak pengguna. |
-| **Tabel Wishlist/Favorite** (Elitsa E. Nurcahyati) | **`Product_Id`** (FK di Wishlist) | 1 Produk ada di N Wishlist | Produk ditambahkan ke daftar keinginan banyak pengguna. |
-| **Tabel Produk Popular** (M. Ilham Musyaffa) | **`Product_Id`** (FK di Produk Popular) | 1 Produk dapat dicatat N kali | Digunakan untuk mencatat popularitas produk. |
-
-### 2. Relasi Many-to-Many (N:M)
-
-Produk memiliki relasi N:M dengan entitas lain (seperti Keranjang atau Pesanan) melalui **Tabel Varian** dan tabel perantara lainnya (misalnya, Item Keranjang dan Item Pesanan).
-
-* **Produk** ↔ **Keranjang**
-    * **Jalur:** `Produk` (1:N) $\rightarrow$ `Varian` (1:N) $\rightarrow$ `Item Keranjang` (N:1) $\rightarrow$ `Keranjang`
-    * **Tabel Terlibat:** **Tabel Item Keranjang** (Nicko Ikhwan Prayogi) menggunakan `Variant_Id` sebagai Foreign Key.
-
-* **Produk** ↔ **Pesanan**
-    * **Jalur:** `Produk` (1:N) $\rightarrow$ `Varian` (1:N) $\rightarrow$ `Item Pesanan` (N:1) $\rightarrow$ `Pesanan`
-    * **Tabel Terlibat:** **Tabel Item Pesanan** (Riyan Zacki Saputra) menggunakan `Variant_Id` sebagai Foreign Key.
 
 
 
