@@ -426,9 +426,7 @@ Tabel Jasa_Pengiriman berfungsi untuk menyimpan dan mengelola data master perusa
 
 ---
 
-## 20.
-
-## Tabel Return  
+## 20. Tabel Return  
 *(ditambah oleh Fifi Nurfadilah)*
 
 ## Atribut Awal
@@ -644,6 +642,7 @@ Tabel `lokasi_operasional` berfungsi untuk menyimpan dan mengelola data lokasi o
 ## 28.
 
 ---
+
 
 
 
