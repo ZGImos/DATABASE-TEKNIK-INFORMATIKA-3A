@@ -27,6 +27,7 @@ Dokumen ini menjelaskan beberapa tabel utama dalam perancangan basis data sistem
 
 ---
 
+
 ## 1. Tabel Users  
 *(Ditambahkan oleh Tika Isnaeni)*
 
@@ -87,11 +88,15 @@ Tabel `users` berfungsi sebagai pusat data pengguna dalam sistem e-commerce. Tab
 ### Catatan Normalisasi  
 Penggabungan tabel **User** dan **Customer** dilakukan untuk menjaga normalisasi data hingga **Third Normal Form (3NF)**, mengurangi duplikasi data, serta meningkatkan performa query dalam sistem e-commerce.
 
+
 ---
+
 
 ## 2.
 
+
 ---
+
 
 ## 3. Tabel Produk 
 *(Ditambahkan oleh Faiq Ahmad)*
@@ -158,6 +163,7 @@ Produk memiliki relasi N:M dengan entitas lain (seperti Keranjang atau Pesanan) 
 
 ---
 
+
 ## 6. Tabel Inventory  
 *(Ditambahkan oleh Daris Nabil Maftuh)*
 
@@ -186,6 +192,7 @@ Produk memiliki relasi N:M dengan entitas lain (seperti Keranjang atau Pesanan) 
 ### Fungsi  
 Tabel `inventory` berfungsi untuk mengelola ketersediaan stok setiap varian produk berdasarkan lokasi penyimpanan, memantau jumlah stok, serta mendukung proses pengendalian persediaan dan transaksi penjualan.
 
+
 ---
 
 ## 7.
@@ -203,6 +210,7 @@ Tabel `inventory` berfungsi untuk mengelola ketersediaan stok setiap varian prod
 ## 10.
 
 ---
+
 
 ## 11. Tabel Keranjang Sementara
 *(Ditambahkan oleh Moh Ilham Dwinanto)*
@@ -224,6 +232,7 @@ Keranjang Sementara pada sistem e-commerce digunakan untuk menyimpan daftar prod
 ### Fungsi
 Digunakan untuk menyimpan daftar produk yang dipilih oleh user sebelum dilakukan proses checkout dan pembuatan pesanan (Order).
 
+
 ---
 
 ## 12.
@@ -237,6 +246,7 @@ Digunakan untuk menyimpan daftar produk yang dipilih oleh user sebelum dilakukan
 ## 14.
 
 ---
+
 
 ### 15. Tabel Wishlist/Favorite
 *(Ditambahkan oleh Elitsa Effie)*
@@ -267,10 +277,11 @@ Aktivitas penambahan atau penghapusan wishlist dapat dicatat sebagai log aktivit
 ### Fungsi
 **Tabel wishlist** berfungsi untuk menyimpan data produk yang diminati oleh pengguna serta memudahkan pengelolaan daftar produk favorit. Keberadaan tabel ini mendukung fitur lanjutan seperti rekomendasi produk dan notifikasi promo, serta membantu meningkatkan interaksi pengguna dan potensi transaksi pembelian di masa mendatang.
 
----
-
 ### Catatan Normalisasi
 **Tabel wishlist** menggunakan primary key tunggal dan foreign key ke **tabel 'users' dan 'product'** sehingga telah memenuhi normalisasi hingga **Third Normal Form (3NF)**. Seluruh atribut bergantung langsung pada primary key tanpa redundansi data, serta menjaga integritas data dan mendukung pengembangan fitur lanjutan.
+
+
+---
 
 
 ## 16. Tabel Metode Pembayaran  
@@ -309,9 +320,12 @@ Tabel `payment_methods` berfungsi sebagai pusat konfigurasi opsi pembayaran dala
 ### Catatan Normalisasi  
 Pemisahan tabel **Partners** dan **Payment Methods** dilakukan untuk menjaga normalisasi data hingga **Third Normal Form (3NF)**, mencegah duplikasi data penyedia layanan, serta mendukung skalabilitas jika terjadi penambahan produk pembayaran baru di masa depan.
 
+
 ---
 
+
 ## 17.
+
 
 ---
 
@@ -330,6 +344,7 @@ Pemisahan tabel **Partners** dan **Payment Methods** dilakukan untuk menjaga nor
 ## 21.
 
 ---
+
 
 ## 22. Tabel Klaim Promo  
 *(Ditambahkan oleh Dimas Faril Ardiansyah)*
@@ -355,12 +370,19 @@ Pemisahan tabel **Partners** dan **Payment Methods** dilakukan untuk menjaga nor
 - **Klaim Promo – Pesanan** (1 : 0..1)  
   Satu pesanan boleh tidak menggunakan promo, dan jika menggunakan hanya satu promo  
 
+
 ---
+
+
 ## 23.
 
+
 ---
 
+
 ## 24.
+
+
 
 ---
 
@@ -394,6 +416,7 @@ Tabel riwayat_pencarian telah dinormalisasi hingga Third Normal Form (3NF). Selu
 
 ---
 
+
 ## 26. Tabel Lokasi Operasional  
 *(Ditambahkan oleh Najwa Alief Nursfhifa)*
 
@@ -419,6 +442,7 @@ Tabel `lokasi_operasional` berfungsi untuk menyimpan dan mengelola data lokasi o
 - Detail SQL dan implementasi teknis disesuaikan oleh Database Engineer (Satu Kelas)
 - Dokumen ini digunakan sebagai acuan konseptual dan akademik
 
+
 ---
 
 ## 27.
@@ -428,6 +452,7 @@ Tabel `lokasi_operasional` berfungsi untuk menyimpan dan mengelola data lokasi o
 ## 28.
 
 ---
+
 
 
 
