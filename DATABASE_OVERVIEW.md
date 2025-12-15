@@ -245,8 +245,6 @@ Digunakan untuk menyimpan daftar produk yang dipilih oleh user sebelum dilakukan
 ### Deskripsi
 Tabel `Pesanan` adalah tabel transaksional utama yang mencatat setiap pembelian yang berhasil dibuat oleh pengguna. Tabel ini mengintegrasikan data dari User, Alamat Pengiriman, dan Metode Pembayaran serta menjadi induk bagi Item Pesanan.
 
----
-
 ### Atribut  
 Tabel `Pesanan` memiliki atribut sebagai berikut:
 Nama Atribut,Keterangan,Kunci
@@ -261,8 +259,6 @@ Nama Atribut,Keterangan,Kunci
 - `biaya_pengiriman`,Biaya pengiriman yang dikenakan.
 - `tracking_number`,Nomor resi pelacakan dari jasa pengiriman.
 - `created_at`,Waktu pencatatan pesanan dalam sistem.
-
----
 
 ### Relasi  
 Tabel `Pesanan` memiliki relasi dengan beberapa tabel lain, yaitu:
@@ -291,15 +287,11 @@ Tabel `Pesanan` memiliki relasi dengan beberapa tabel lain, yaitu:
 - **pesanan – return** (1 : N)
   Satu pesanan dapat memiliki banyak pengajuan return (melalui Item Pesanan).
 
----
-
 ### Fungsi  
 Tabel `Pesanan` berfungsi sebagai: 
 1. Perekam Transaksi Utama: Mencatat detail dan riwayat setiap transaksi pembelian.
 2. Manajemen Status: Mengelola dan memperbarui Status pesanan dari awal hingga selesai.
 3. Integrator Data: Menghubungkan semua data master (User, Alamat, Pembayaran) dengan data item produk yang dibeli.
-
----
 
 ### Catatan Normalisasi  
 Tabel ini dirancang untuk memenuhi Third Normal Form (3NF), di mana semua atribut non-key secara langsung bergantung pada Kunci Utama `order_id`, tanpa adanya ketergantungan transitif.
@@ -549,6 +541,7 @@ Tabel `lokasi_operasional` berfungsi untuk menyimpan dan mengelola data lokasi o
 ## 28.
 
 ---
+
 
 
 
