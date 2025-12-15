@@ -1,16 +1,31 @@
-# DATABASE OVERVIEW – E-COMMERCE
+NORMALISASI BASIS DATA – Virgiawan Ananda Purwoko
 
-**Gambaran umum database** pada website e-commerce fashion. Database dirancang menggunakan **basis data relasional** untuk mendukung fitur belanja, transaksi, return, pengiriman dan subscription.
+*Proyek** : Aplikasi E-Commerce
+**Mata Kuliah** : Basis Data
+**Tahap** : 1 – Analisis & Normalisasi
 
 ---
 
-## Tujuan Database
+## Deskripsi Awal Tabel
 
-- Menyimpan data user dan customer
-- Mengelola produk fashion beserta varian dan stok
-- Mendukung proses keranjang, pesanan, pembayaran, dan pengiriman
-- Mendukung fitur return, promo, wishlist, review, dan subscription
+**Detail Promosi** pada sistem e-commerce.
 
+### Atribut Awal
+
+| Atribut             | Keterangan                           |
+| ------------------- | ------------------------------------          |
+| `promo_id`          | ID unik promo (primary key)                   |
+| `kode_promo`        | Kode promo yang digunakan pengguna            |
+| `nama_promo`        | Nama atau judul promo                         |
+| `jenis_diskon`      | Jenis diskon (persentase / nominal)           |
+| `nilai_diskon`      | Besar diskon yang diberikan                   |
+| `tanggal_mulai`     | Tanggal mulai promo berlaku                   |
+| `tanggal_akhir`     | Tanggal promo berakhir                        |
+| `minimal_transaksi` | Minimum nilai transaksi agar promo aktif      |
+| `maksimal_diskon`   | Batas maksimum potongan (jika persen)         |
+| `kuota`             | Jumlah maksimal penggunaan promo              |
+| `status`            | Status promo (aktif / nonaktif / kadaluarsa)  |
+| `keterangan`        | Penjelasan atau syarat tambahan promo         |
 ---
 
 ## Ringkasan Desain Database
@@ -228,6 +243,9 @@ Penggabungan tabel **User** dan **Customer** dilakukan untuk menjaga normalisasi
 
 ---
 
+## Analisis Kebutuhan Sistem
+
+Dalam sistem e-commerce, promo memiliki karakteristik:
 
 ## 2.
 
@@ -290,56 +308,53 @@ Produk memiliki relasi N:M dengan entitas lain (seperti Keranjang atau Pesanan) 
     * **Tabel Terlibat:** **Tabel Item Pesanan** (Riyan Zacki Saputra) menggunakan `Variant_Id` sebagai Foreign Key.
 
 
+- Tidak selalu berlaku untuk semua transaksi
+- Memiliki periode waktu tertentu (mulai dan berakhir)
+- Dapat memiliki berbagai jenis dan aturan (persentase, nominal, syarat minimal)
+- Memerlukan pengelolaan status (aktif, nonaktif, kadaluarsa)
+- Dapat digunakan pada lebih dari satu pesanan (Order)
+
+Karena itu, data promo tidak dapat digabung langsung dengan tabel Order dan perlu dikelola dalam tabel tersendiri.
+
 ---
 
-## 4.
+## Proses Normalisasi
 
----
+### First Normal Form (1NF)
 
-## 5.
-
----
-
+- Semua atribut bersifat atomik
+- Tidak ada data multivalue (satu kolom satu nilai)
 
 ## 6. Tabel Inventory  
 *(Ditambahkan oleh Daris Nabil Maftuh)*
 
-### Entitas Utama  
-**Inventory (Stok Produk)**
+  **Memenuhi 1NF**
 
-### Atribut Utama  
-- `inventory_id` (PK)  
-- `variant_id` (FK)  
-- `location_id` (FK)  
-- `stock_qty`  
-- `stock_minimum`  
-- `stock_status`  
-- `last_updated`  
+  ---
 
-### Relasi  
-- **Inventory – Varian Produk** (1 : 1 / 1 : N)  
-  Satu varian produk memiliki data stok  
+  ### Second Normal Form (2NF)
 
-- **Inventory – Lokasi Operasional** (N : 1)  
-  Banyak data stok berada pada satu lokasi (gudang / toko)  
+- Primary Key hanya satu (promo_id)
+- Seluruh atribut bergantung penuh pada Primary Key
 
-- **Inventory – Item Pesanan** (tidak langsung)  
-  Stok berkurang saat terjadi transaksi pembelian  
+**Memenuhi 2NF**
 
-### Fungsi  
-Tabel `inventory` berfungsi untuk mengelola ketersediaan stok setiap varian produk berdasarkan lokasi penyimpanan, memantau jumlah stok, serta mendukung proses pengendalian persediaan dan transaksi penjualan.
+ ---
 
+ ### Third Normal Form (3NF)
 
 ---
 
-## 7.
+- Tidak terdapat ketergantungan transitif
+- Setiap atribut non-primary tidak bergantung pada atribut non-primary lainnya
 
----
+  **Memenuhi 3NF**
 
-## 8.
+  ---
 
----
+  ## Keputusan Normalisasi
 
+  ### Dijadikan Tabel Tersendiri
 ## 9. Tabel Subscription
 *(Ditambahkan oleh Hamudi Bait Khalimi)*
 
@@ -436,19 +451,41 @@ Desain ini memenuhi prinsip normalisasi hingga **Third Normal Form (3NF)** serta
 - Desain terstruktur dan ter-normalisasi
 
 
+  Alasan:
+
+1. Promo merupakan entitas bisnis, bukan sekadar atribut tambahan
+2. Memiliki periode berlaku dan status yang jelas
+3. Dapat digunakan pada lebih dari satu transaksi (Order)
+4. Menghindari redundansi data pada tabel Order
+5. Mendukung pengelolaan dan pengembangan promo di masa depan
+
 ---
 
-## 10.
-
----
-
+## Relasi Antar Tabel
 
 ## 11. Tabel Keranjang Sementara
 *(Ditambahkan oleh Moh Ilham Dwinanto)*
 
-### Deskripsi
-Keranjang Sementara pada sistem e-commerce digunakan untuk menyimpan daftar produk yang dipilih oleh user sebelum dilakukan proses checkout dan pembuatan pesanan (Order). Keranjang bersifat sementara dan dapat berubah sewaktu-waktu selama user belum menyelesaikan transaksi.
+- Promo (1) → (N) Klaim_Promo
+- User (1) → (N) Klaim_Promo
+- Promo (1) → (N) Order
 
+---
+
+## ERD 
+
+```
++-------------+     1     N     +----------------+     N     1     +-------------+
+|   PROMO     |--------------- |  KLAIM_PROMO   |--------------- |    USER     |
++-------------+                 +----------------+                 +-------------+
+| promo_idPK  |                 | klaim_idPK     |                 | user_idPK   |
+| kode_promo  |                 | promo_idFK     |                 | name        |
+| jenis_diskon|                 | user_idFK      |                 | email       |
+| nilai_diskon|                 | used_at        |                 |             |
+| start_date  |                 | status         |                 |             |
+| end_date    |                 +----------------+                 +-------------+
+| status      |
++-------------+
 ### Atribut
 - `keranjang_id`   : sebagai Primary Key keranjang
 - `user_id`        : sebagai Foreign Key ke tabel user
@@ -486,8 +523,38 @@ Item Keranjang Sementara pada sistem e-commerce digunakan untuk menyimpan data p
 ### Relasi
 - keranjang -> item_keranjang (1:N) : satu keranjang dapat berisi banyak item
 
+           1
+           |
+           |
+           N
+     +-------------+
+     |   ORDER     |
+     +-------------+
+     | order_idPK  |
+     | user_idFK   |
+     | promo_idFK  |
+     | order_date  |
+     | total_price |
+     +-------------+
+
+```
+
 ---
 
+## Perbandingan dengan Tabel Mahasiswa Lain
+
+|  Mahasiswa   |  Tabel       |                          Konsistensi                                           |     |
+| ----------   | -----------  | ------------------------------------------------------------------------------ | --- |
+| User         | Customer     | Promo dapat dibatasi per pengguna atau segmen tertentu (melalui klaim promo).  | ✔️  |
+| Produk       | Product      | Promo dapat berlaku untuk produk, kategori, atau brand tertentu.               | ✔️  |
+| Order        | Pesanan      | Promo diterapkan pada saat checkout dan tercatat pada data pesanan.            | ✔️  |
+| Klaim Promo  | Ambil Promo  | Menyimpan riwayat penggunaan promo oleh pengguna serta kontrol kuota.          | ✔️  |
+| Subscription | Berlangganan | Promo diterapkan pada saat checkout dan tercatat pada data pesanan.            | ✔️  |
+| **Virgi**    | Promo        | Menyimpan aturan diskon secara terpisah dari transaksi.                        | ✔️  |
+
+Struktur Promo **selaras dan konsisten** dengan tabel mahasiswa lain.
+
+## Kesimpulan
 ### Fungsi
 Digunakan untuk menyimpan data produk yang dipilih oleh user yang kemudian disimpan di dalam tabel Keranjang.
 
@@ -894,7 +961,11 @@ Tabel `lokasi_operasional` berfungsi untuk menyimpan dan mengelola data lokasi o
 
 ---
 
-## 28.
+- Memenuhi prinsip normalisasi hingga 3NF
+- Mewakili entitas bisnis promo secara mandiri
+- Mendukung pengelolaan aturan diskon, periode berlaku, dan status promo
+- Menghindari redundansi data pada tabel pesanan
+- Mendukung pengembangan dan skalabilitas sistem promo di masa depan
 
 ---
 
